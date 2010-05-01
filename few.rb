@@ -1,18 +1,32 @@
 #!/usr/bin/env ruby
 require 'rubygems'
 require 'sinatra/base'
+require 'mustache/sinatra'
 
 class Few < Sinatra::Base
+  register Mustache::Sinatra
+  
+  set :mustache, {
+    :views     => "views/",
+    :templates => "templates/"
+  }
+  
+  get '/feed/vice_dos_and_donts.rss' do
+    feed_name = "vice_dos_and_donts"
+    format    = "rss"
 
-  get '/' do
-    "ohai, bch."
+    mustache :feed
   end
 
-  get '/feed/:feed_name.:format' do
-    "sup #{params[:feed_name]}, you like #{params[:format]}?"
-  end
-
+  # get '/feed/:feed_name.:format' do
+  #   "sup #{params[:feed_name]}, you like #{params[:format]}?"
+  # end
 end
+
+
+
+
+
 
 # require 'rubygems'
 # require 'open-uri'

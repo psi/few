@@ -6,21 +6,19 @@ require 'mustache/sinatra'
 class Few < Sinatra::Base
   register Mustache::Sinatra
   
+  Dir["feeds/*"].each {|feed| require feed }
+  
   set :mustache, {
     :views     => "views/",
     :templates => "templates/"
   }
   
-  get '/feed/vice_dos_and_donts.rss' do
-    feed_name = "vice_dos_and_donts"
-    format    = "rss"
+  get '/feed/:feed_name.rss' do
+    response.headers['Content-Type']  = "application/rss+xml"
+    response.headers['Cache-Control'] = "public, max-age=900"
 
-    mustache :feed
+    mustache :feed, :layout => false
   end
-
-  # get '/feed/:feed_name.:format' do
-  #   "sup #{params[:feed_name]}, you like #{params[:format]}?"
-  # end
 end
 
 

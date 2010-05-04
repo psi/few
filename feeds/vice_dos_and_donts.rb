@@ -32,7 +32,7 @@ class Few
       def starting_id
         @current_id ||= begin
           body = open("http://www.viceland.com/int/dos.php").read
-          body.scan(%r|dos_donts/(\d+)/icon.jpg|).flatten.map(&:to_i).sort.last
+          body.scan(%r|dos_donts/(\d+)/icon.jpg|).flatten.map {|e| e.to_i }.sort.last
         end
       end
       

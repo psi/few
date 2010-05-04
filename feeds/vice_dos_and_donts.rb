@@ -5,7 +5,7 @@ class Few
   module Feeds
     class ViceDosAndDonts
       def title
-        "VICE DOs & DON'Ts"
+        "VICE DOs &amp; DON'Ts"
       end
       
       def description

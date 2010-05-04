@@ -44,7 +44,7 @@ class Few
         caption   = body.scan(%r|<td\s+valign='top'\s+align='left'>([^>]+)<|mi).flatten.first.strip
         image_url = "http://scs.viceland.com/img/dos_donts/#{id}/main.jpg"
         
-        description = "&lt;img src='#{image_url}'&gt;&lt.br /&gt;&lt;p&gt;#{caption}&lt;/p&gt;"
+        description = "&lt;img src='#{image_url}'&gt;&lt;br /&gt;&lt;p&gt;#{caption}&lt;/p&gt;"
         
         timestamp = Time.parse(body.match(/on ([^<]+) <i>wrote:/)[1]).rfc822 rescue Time.now.rfc822
         

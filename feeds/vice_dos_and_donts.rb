@@ -1,5 +1,5 @@
 require 'open-uri'
-require 'cgi'
+require 'htmlentities'
 
 class Few
   module Feeds
@@ -37,12 +37,17 @@ class Few
       end
       
       def scrape_one(id)
+        coder = HTMLEntities.new
+
         url  = "http://www.viceland.com/int/dd.php?id=#{id}"
         body = open(url).read
         
         title     = body.match(/<h1>(.*?)<\/h1>/)[1]
         caption   = body.scan(%r|<td\s+valign='top'\s+align='left'>([^>]+)<|mi).flatten.first.strip
         image_url = "http://scs.viceland.com/img/dos_donts/#{id}/main.jpg"
+
+        caption = coder.decode(caption)
+        caption = coder.encode(caption, :basic, :decimal)
         
         description = "&lt;img src='#{image_url}'&gt;&lt;br /&gt;&lt;p&gt;#{caption}&lt;/p&gt;"
         

@@ -43,7 +43,7 @@ class Few
         body = open(url).read
         
         title     = body.match(/<h1>(.*?)<\/h1>/)[1]
-        caption   = body.scan(%r|<td\s+valign='top'\s+align='left'>([^>]+)<|mi).flatten.first.strip
+        caption   = body.scan(%r|<td\s+valign='top'\s+align='left'>(.*?)</td>|mi).flatten.first.strip
         image_url = "http://scs.viceland.com/img/dos_donts/#{id}/main.jpg"
 
         caption = coder.decode(caption)

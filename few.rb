@@ -12,6 +12,10 @@ class Few < Sinatra::Base
     :views     => "views/",
     :templates => "templates/"
   }
+ 
+  get '/' do
+    haml :index
+  end
   
   get '/feed/:feed_name.rss' do
     response.headers['Content-Type']  = "application/rss+xml"

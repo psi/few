@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <description>{{description}}</description>
+    <title>{{{title}}}</title>
+    <generator>FutureExWife (1.0)</generator>
+    <link>{{link}}</link>
+    {{#items}}
+      <item>
+        <title>{{{title}}}</title>
+        <description>{{{description}}}</description>
+        <link>{{link}}</link>
+        <guid>{{link}}</guid>
+        <pubDate>{{timestamp}}</pubDate>
+        <enclosure url="{{enclosure_url}}" length="{{enclosure_length}}" type="{{enclosure_content_type}}" />
+      </item>
+    {{/items}}
+  </channel>
+</rss>
